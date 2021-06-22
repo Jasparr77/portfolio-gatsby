@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 const Dots:React.FC = () => {
   let i = 0;
   const points:[number, number,number,number][] = [];
-  while (i <= 100) {
+  while (i <= 42) {
     const randomX2 = Math.random() * 100;
     const randomX1 = Math.random() * 100;
     const randomY2 = Math.random() * 100;
@@ -14,53 +14,61 @@ const Dots:React.FC = () => {
   }
 
   // if (document){
-  const width = 900;
-  const height = 600;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
 
   const xScale = d3.scaleLinear([0,100],[0,width]);
   const yScale = d3.scaleLinear([0,100],[0,height]);
+
   // const network = '';
   return (
     <svg overflow="visible">
-      {points.map((p)=>{
+      {points.map((p,i)=>{
+        let index:number = (
+          i === 0 
+          ? points.length - 1
+          : i-1
+        )
         return (
+          <>
           <line 
             stroke="black"
             strokeWidth=".125px"
             x1={xScale(p[0])}
             y1={yScale(p[1])}
-            x2={xScale(p[2])}
-            y2={yScale(p[3])}
+            x2={xScale(points[index][0])}
+            y2={yScale(points[index][1])}
           >
             <animate 
               attributeName="x1"
-              from={p[0]}
-              to={p[3]}
-              dur="60s"
+              from={xScale(p[0])}
+              to={yScale(Math.random()*100)}
+              dur="30s"
               repeatCount="indefinite"
             />
             <animate 
               attributeName="y1"
-              from={p[1]}
-              to={p[2]}
-              dur="60s"
+              from={yScale(p[1])}
+              to={xScale(Math.random()*100)}
+              dur="30s"
               repeatCount="indefinite"
             />
             <animate 
               attributeName="x2"
-              from={p[2]}
-              to={p[1]}
-              dur="60s"
+              from={xScale(p[2])}
+              to={yScale(Math.random()*100)}
+              dur="30s"
               repeatCount="indefinite"
             />
             <animate 
               attributeName="y2"
-              from={p[3]}
-              to={p[0]}
-              dur="60s"
+              from={yScale(points[index][1])}
+              to={xScale(Math.random()*100)}
+              dur="30s"
               repeatCount="indefinite"
             />
             </line>
+            </>
         )
       })}
       </svg>

@@ -11,7 +11,7 @@ const pageStyles = {
 const headingStyles = {
   marginTop: 0,
   marginBottom: 64,
-  maxWidth: 320,
+  maxWidth: '55vw',
 };
 const headingAccentStyles = {
   color: '#663399',
@@ -27,11 +27,20 @@ const codeStyles = {
   borderRadius: 4,
 };
 
-const skills = [
-  { name: 'react.js', link: 'https://reactjs.org', srcName: 'react' },
-  { name: 'typescript', link: 'https://typescriptlang.org', srcName: 'd3' },
-  { name: 'd3.js', link: 'https://d3js.org', srcName: 'ts' },
-];
+const skillGrid = {
+  display: 'grid',
+  gridTemplateColumns: '110px 110px 110px',
+  gridTemplateRows: '110px',
+  gridTemplateAreas: '"react ts d3"'
+}
+
+const skillCell = {display: 'flex', justifyContent:'center'}
+
+const learnGrid = {
+  ...skillGrid,
+  gridTemplateAreas: '"svelte graphQL gatsby"'
+}
+const learnCell = {...skillCell}
 
 // markup
 const IndexPage = () => (
@@ -40,39 +49,68 @@ const IndexPage = () => (
     <title>Jasper Croome</title>
     <h1 style={headingStyles}>
       Hi! I'm Jasper Croome.
-      <br />
-      <span style={headingAccentStyles} />
     </h1>
     <p style={paragraphStyles}>
-      I'm a Web developer focused on creating elegant, user-friendly solutions.
+      I'm Focused on delighting other humans through elegant and informative design.
     </p>
     <h2 style={headingStyles}>
-      I have experience creating products with:
-    </h2>
-    <StaticImage
-      src="../images/react.png"
-      alt="react.js"
-      placeholder="tracedSVG"
-      layout="constrained"
-      height={64}
-      width={64}
-    />
-    <StaticImage
-      src="../images/ts.png"
-      alt="typescript"
-      placeholder="tracedSVG"
-      layout="constrained"
-      height={64}
-      width={64}
-    />
-    <StaticImage
-      src="../images/d3.png"
-      alt="d3.js"
-      placeholder="tracedSVG"
-      layout="constrained"
-      height={64}
-      width={64}
-    />
+      I have deep work experience creating products with:
+    <div style={skillGrid}>
+    <div style={{...skillCell, gridArea: 'react'}}>
+      <StaticImage
+        src="../images/react.png"
+        alt="react.js"
+        placeholder="tracedSVG"
+        width={90}
+        />
+    </div>
+    <div style={{...skillCell, gridArea: 'ts'}}>
+      <StaticImage
+        src="../images/ts.png"
+        alt="typescript"
+        placeholder="tracedSVG"
+        width={90}
+        />
+    </div>
+    <div style={{...skillCell, gridArea: 'd3'}}>
+      <StaticImage
+        src="../images/d3.png"
+        alt="d3.js"
+        placeholder="tracedSVG"
+        width={90}
+        />
+    </div>
+  </div>
+  </h2>
+  <h2 style={headingStyles}>
+      I'm currently working on side projects to get up to speed with:
+    <div style={learnGrid}>
+    <div style={{gridArea: 'svelte',display: 'flex', justifyContent:'center'}}>
+      <StaticImage
+        src="../images/svelte.png"
+        alt="svelte.js"
+        placeholder="tracedSVG"
+        width={90}
+        />
+    </div>
+    <div style={{gridArea: 'graphQL',display: 'flex', justifyContent:'center'}}>
+      <StaticImage
+        src="../images/graphql.png"
+        alt="graphQL"
+        placeholder="tracedSVG"
+        width={90}
+        />
+    </div>
+    <div style={{gridArea: 'gatsby',display: 'flex', justifyContent:'center'}}>
+      <StaticImage
+        src="../images/gatsby.png"
+        alt="gatsby"
+        placeholder="tracedSVG"
+        width={90}
+        />
+    </div>
+  </div>
+  </h2>
     <p style={paragraphStyles}>
       Edit
       {' '}
