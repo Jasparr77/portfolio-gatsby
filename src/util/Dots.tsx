@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { scaleLinear, line, curveCardinalClosed } from 'd3';
 
 const Dots:React.FC = () => {
@@ -16,8 +16,14 @@ const Dots:React.FC = () => {
   }
 
   // if (document){
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+    let width = 1280
+    let height = 800
+    useEffect(()=>{
+      width = window.innerWidth;
+      height = window.innerHeight;
+    },[]
+    )
+    
 
   const xScale = scaleLinear([0,100],[0,width]);
   const yScale = scaleLinear([0,100],[0,height]);

@@ -6,7 +6,7 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-gatsby-cloud",
     "gatsby-plugin-image",
-    "gatsby-plugin-sitemap",
+    
     "gatsby-transformer-remark",
     "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
