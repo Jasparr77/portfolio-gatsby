@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "portfolio-gatsby",
+    siteUrl:"https://jaspercroome.gatsbyjs.io"
   },
   plugins: [
     "gatsby-plugin-styled-components",
