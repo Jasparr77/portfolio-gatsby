@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { scaleLinear, line, curveCardinalClosed } from 'd3';
+import { scaleLinear, line, curveCardinalClosed, curveStepAfter } from 'd3';
 
-const Dots:React.FC = () => {
+const Paths:React.FC = () => {
   let i = 0;
   const points0:[number, number][] = [];
   const points1:[number, number][] = [];
@@ -29,10 +29,11 @@ const Dots:React.FC = () => {
   const yScale = scaleLinear([0,100],[0,height]);
 
   const lineGenerator = line().x(d => xScale(d[0])).y(d => yScale(d[1])).curve(curveCardinalClosed)
+  const lineGenerator2 = line().x(d => xScale(d[0])).y(d => yScale(d[1])).curve(curveStepAfter)
 
   return (
-    <svg overflow="visible">
-      <path d={lineGenerator(points0)} strokeWidth=".5px"stroke="whiteSmoke" fill="salmon" opacity=".25">
+    <svg overflow="visible" x={0} y={0}height={0}width={0}>
+      <path d={lineGenerator2(points0)} strokeWidth=".5px"stroke="whiteSmoke" fill="salmon" opacity=".25">
         <animate
           attributeName="d" 
           values={`${lineGenerator(points0)};${lineGenerator(points1)};${lineGenerator(points0)}`}
@@ -50,4 +51,4 @@ const Dots:React.FC = () => {
   );
 };
 
-export default Dots;
+export default Paths;

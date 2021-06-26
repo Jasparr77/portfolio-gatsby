@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
-import Dots from '../util/Dots';
+import Paths from '../util/Paths';
+import Arrow from '../util/Arrows';
 
 // styles
 const pageStyles = {
@@ -10,23 +11,12 @@ const pageStyles = {
 };
 const headingStyles = {
   marginTop: 0,
-  // marginBottom: 64,
+  marginBottom: 64,
   maxWidth: '55vw',
-};
-const headingAccentStyles = {
-  color: '#663399',
 };
 const paragraphStyles = {
   marginBottom: 48,
 };
-const codeStyles = {
-  color: '#8A6534',
-  padding: 4,
-  backgroundColor: '#FFF4DB',
-  fontSize: '1.25rem',
-  borderRadius: 4,
-};
-
 const skillGrid = {
   display: 'grid',
   gridTemplateColumns: '110px 110px 110px',
@@ -42,11 +32,10 @@ const learnGrid = {
 }
 const learnCell = {...skillCell}
 
-// markup
 const IndexPage = () => (
   <main style={pageStyles} id="main">
-    <Dots/>
     <title>Jasper Croome</title>
+    <Paths />
     <h1 style={headingStyles}>
       Hi! I'm Jasper Croome.
     </h1>
@@ -55,62 +44,60 @@ const IndexPage = () => (
     </p>
     <h4 style={headingStyles}>
       I have deep work experience creating products with:
-    <div style={skillGrid}>
-    <div style={{...skillCell, gridArea: 'react'}}>
-      <StaticImage
-        src="../images/react.png"
-        alt="react.js"
-        placeholder="tracedSVG"
-        width={90}
-        />
-    </div>
-    <div style={{...skillCell, gridArea: 'ts'}}>
-      <StaticImage
-        src="../images/ts.png"
-        alt="typescript"
-        placeholder="tracedSVG"
-        width={90}
-        />
-    </div>
-    <div style={{...skillCell, gridArea: 'd3'}}>
-      <StaticImage
-        src="../images/d3.png"
-        alt="d3.js"
-        placeholder="tracedSVG"
-        width={90}
-        />
-    </div>
-  </div>
-  </h4>
-  <h4 style={headingStyles}>
+      <div style={skillGrid}>
+        <div style={{ ...skillCell, gridArea: 'react' }}>
+          <StaticImage
+            src="../images/react.png"
+            alt="react.js"
+            placeholder="tracedSVG"
+            width={90} />
+        </div>
+        <div style={{ ...skillCell, gridArea: 'ts' }}>
+          <StaticImage
+            src="../images/ts.png"
+            alt="typescript"
+            placeholder="tracedSVG"
+            width={90} />
+        </div>
+        <div style={{ ...skillCell, gridArea: 'd3' }}>
+          <StaticImage
+            src="../images/d3.png"
+            alt="d3.js"
+            placeholder="tracedSVG"
+            width={90} />
+        </div>
+      </div>
+    </h4>
+    <h4 style={headingStyles}>
       I'm currently working on side projects to get up to speed with:
-    <div style={learnGrid}>
-    <div style={{gridArea: 'svelte',display: 'flex', justifyContent:'center'}}>
-      <StaticImage
-        src="../images/svelte.png"
-        alt="svelte.js"
-        placeholder="tracedSVG"
-        width={90}
-        />
-    </div>
-    <div style={{gridArea: 'graphQL',display: 'flex', justifyContent:'center'}}>
-      <StaticImage
-        src="../images/graphql.png"
-        alt="graphQL"
-        placeholder="tracedSVG"
-        width={90}
-        />
-    </div>
-    <div style={{gridArea: 'gatsby',display: 'flex', justifyContent:'center'}}>
-      <StaticImage
-        src="../images/gatsby.png"
-        alt="gatsby"
-        placeholder="tracedSVG"
-        width={90}
-        />
-    </div>
-  </div>
-  </h4>
+      <div style={learnGrid}>
+        <div style={{ gridArea: 'svelte', display: 'flex', justifyContent: 'center' }}>
+          <StaticImage
+            src="../images/svelte.png"
+            alt="svelte.js"
+            placeholder="tracedSVG"
+            width={90} />
+        </div>
+        <div style={{ gridArea: 'graphQL', display: 'flex', justifyContent: 'center' }}>
+          <StaticImage
+            src="../images/graphql.png"
+            alt="graphQL"
+            placeholder="tracedSVG"
+            width={90} />
+        </div>
+        <div style={{ gridArea: 'gatsby', display: 'flex', justifyContent: 'center' }}>
+          <StaticImage
+            src="../images/gatsby.png"
+            alt="gatsby"
+            placeholder="tracedSVG"
+            width={90} />
+        </div>
+      </div>
+    </h4>
+    <Arrow direction="down" fill="whiteSmoke" stroke="blue" />
+    <Arrow direction="left" fill="whiteSmoke" stroke="blue" />
+    <Arrow direction="right" fill="whiteSmoke" stroke="blue" />
+    <Arrow direction="up" fill="whiteSmoke" stroke="blue" />
   </main>
 );
 
