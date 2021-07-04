@@ -4,10 +4,37 @@ import Paths from '../util/Paths';
 import Arrow from '../util/Arrows';
 
 // styles
+
+const themes = {
+  evening:{
+    background:'#154360',
+    0:'#DAF7A6',
+    1:'#FFC300',
+    2:'#FF5733',
+    3:'#C70039',
+    4:'#900C3F',
+    fontColor:'whiteSmoke',
+  },
+  morning:{
+    background:"#ccfbfe",
+    0:"#cdd6dd",
+    1:"#cdcacc",
+    2:"#cdaca1",
+    3:"#cd8987",
+    4:"#d29492",
+    fontColor:'#154360'
+  }
+}
+
+const theme = Math.random() > 0.5 ? 'evening' : 'morning'
+
 const pageStyles = {
-  color: '#232129',
-  padding: 96,
+  color: themes[theme].fontColor,
   fontFamily: '-apple-system, Roboto, sans-serif, serif',
+  backgroundColor: themes[theme].background,
+  margin: -10,
+  border: 0,
+  padding: 0
 };
 const headingStyles = {
   marginTop: 0,
@@ -32,72 +59,52 @@ const learnGrid = {
 }
 const learnCell = {...skillCell}
 
+const sections = [
+  {text:"Hi! I'm Jasper Croome.",
+      style:{fontWeight:800, fontSize:'64px', fill:themes[theme].fontColor},
+      x:"10%",
+      y:.5
+    },
+  {text:"I'm focused on delighting my fellow humans through elegant and informative experiences.",
+      style:{fontWeight:800, fontSize:'26px', fill:themes[theme].fontColor},
+      x:"10%",
+      y:.275
+    },
+  {text:"I have deep work experience creating products with:",
+  style:{fontWeight:800, fontSize:'20px', fill:themes[theme].fontColor},
+    x:"10%",
+    y:.5
+  },
+  {text:"I'm currently working on side projects to get up to speed with:",
+  style:{fontWeight:800, fontSize:'20px', fill:themes[theme].fontColor},
+    x:"10%",
+    y:.5
+  }
+]
+
 const IndexPage = () => (
-  <main style={pageStyles} id="main">
+  <main style={pageStyles} id="main" >
     <title>Jasper Croome</title>
-    <Paths />
-    <h1 style={headingStyles}>
-      Hi! I'm Jasper Croome.
-    </h1>
-    <p style={paragraphStyles}>
-      I'm focused on delighting my fellow humans through elegant and informative experiences.
-    </p>
-    <h4 style={headingStyles}>
-      I have deep work experience creating products with:
-      <div style={skillGrid}>
-        <div style={{ ...skillCell, gridArea: 'react' }}>
-          <StaticImage
-            src="../images/react.png"
-            alt="react.js"
-            placeholder="tracedSVG"
-            width={90} />
-        </div>
-        <div style={{ ...skillCell, gridArea: 'ts' }}>
-          <StaticImage
-            src="../images/ts.png"
-            alt="typescript"
-            placeholder="tracedSVG"
-            width={90} />
-        </div>
-        <div style={{ ...skillCell, gridArea: 'd3' }}>
-          <StaticImage
-            src="../images/d3.png"
-            alt="d3.js"
-            placeholder="tracedSVG"
-            width={90} />
-        </div>
-      </div>
-    </h4>
-    <h4 style={headingStyles}>
-      I'm currently working on side projects to get up to speed with:
-      <div style={learnGrid}>
-        <div style={{ gridArea: 'svelte', display: 'flex', justifyContent: 'center' }}>
-          <StaticImage
-            src="../images/svelte.png"
-            alt="svelte.js"
-            placeholder="tracedSVG"
-            width={90} />
-        </div>
-        <div style={{ gridArea: 'graphQL', display: 'flex', justifyContent: 'center' }}>
-          <StaticImage
-            src="../images/graphql.png"
-            alt="graphQL"
-            placeholder="tracedSVG"
-            width={90} />
-        </div>
-        <div style={{ gridArea: 'gatsby', display: 'flex', justifyContent: 'center' }}>
-          <StaticImage
-            src="../images/gatsby.png"
-            alt="gatsby"
-            placeholder="tracedSVG"
-            width={90} />
-        </div>
-      </div>
-    </h4>
-    <Arrow direction="down" fill="whiteSmoke" stroke="blue" />
-    <Arrow direction="left" fill="whiteSmoke" stroke="blue" />
-    <Arrow direction="right" fill="whiteSmoke" stroke="blue" />
-    <Arrow direction="up" fill="whiteSmoke" stroke="blue" />
+    <div style={{
+      backgroundColor: 'none',
+      position:'absolute',
+      height:innerHeight,
+      width:innerWidth,
+      overflow:'scroll'
+    }}
+    >
+    <svg x="0" y="0" height={innerHeight * sections.length} width={innerWidth} overflow="scroll" onScroll={()=>{console.log('scroll')}}>
+      {sections.map((s:typeof sections[0],i)=>(
+        <text style={s.style} x={s.x} y={(innerHeight * (i+1)) * (s.y)}>
+          {s.text}
+        </text>
+      ))}
+    </svg>
+    </div>
+    <svg x="0" y="0" height={innerHeight} width={innerWidth}>
+    <Paths theme={themes[theme]}/>
+    <Arrow direction="down" stroke={themes[theme].fontColor} x="50%" y="90%"/>
+    </svg>
   </main>
 );
 
