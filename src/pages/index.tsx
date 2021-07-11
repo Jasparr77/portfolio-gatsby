@@ -120,7 +120,7 @@ const IndexPage = () => {
     nextRef.current.scrollIntoView({behavior: "smooth", block:"center"})
   }
 
-  let windowWidth = 1280
+  let windowWidth = 1440
   let windowHeight = 900
 
   useEffect(()=>{

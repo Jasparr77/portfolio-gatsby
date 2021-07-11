@@ -20,7 +20,7 @@ const Paths:React.FC<PathProps> = (props) => {
     i += 1;
   }
 
-    let width = 1280
+    let width = 1440
     let height = 900
 
     const xScale = scaleLinear([-5,105],[0,width]);
