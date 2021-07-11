@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
-import { scaleLinear, line, curveNatural, curveBasisClosed, curveCardinalClosed } from 'd3';
+import React, { useEffect, Dispatch, SetStateAction } from 'react';
+import { scaleLinear, line, curveCardinalClosed, curveBasisClosed, curveStepBefore, curveLinearClosed } from 'd3';
+import { Theme } from '../pages';
 
-const Paths:React.FC = (props:{theme}) => {
+type PathProps = {theme:Theme}
+
+const Paths:React.FC<PathProps> = (props) => {
   const {theme} = props;
+  
   let i = 0;
   const points0:[number, number][] = [];
   const points1:[number, number][] = [];
@@ -17,21 +21,28 @@ const Paths:React.FC = (props:{theme}) => {
   }
 
     let width = 1280
-    let height = 800
+    let height = 900
+
+    const xScale = scaleLinear([-5,105],[0,width]);
+    const yScale = scaleLinear([-5,105],[0,height]);
+  
+    const lines = [
+      curveCardinalClosed,
+      curveStepBefore,
+      curveBasisClosed,
+      curveLinearClosed
+    ]
+
+    const lineGenerator0 = line().x(d => xScale(d[0])).y(d => yScale(d[1])).curve(lines[0])
+    
     useEffect(()=>{
       width = window.innerWidth;
       height = window.innerHeight;
     },[]
     )
-    
-
-  const xScale = scaleLinear([-5,105],[0,width]);
-  const yScale = scaleLinear([-5,105],[0,height]);
-
-  const lineGenerator2 = line().x(d => xScale(d[0])).y(d => yScale(d[1])).curve(curveCardinalClosed)
 
   return (
-    <svg overflow="visible" x={0} y={0}height={innerHeight}width={innerWidth}>
+    <svg overflow="visible" x={0} y={0}height={height}width={width}>
       {points0.map((p,i)=>{
         const index = (i === 0) ? points0.length -1 : i -1
         return (
@@ -68,14 +79,12 @@ const Paths:React.FC = (props:{theme}) => {
           <feGaussianBlur className="blur" result="coloredBlur" stdDeviation="4"/>
           <feMerge>
             <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="coloredBlur"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
       </defs>
       <path
-        d={lineGenerator2(points0)}
+        d={lineGenerator0(points0)}
         strokeWidth="2px"
         stroke={theme[0]}
         fill="none"
@@ -84,7 +93,7 @@ const Paths:React.FC = (props:{theme}) => {
       >
         <animate
           attributeName="d" 
-          values={`${lineGenerator2(points0)};${lineGenerator2(points1)};${lineGenerator2(points0)}`}
+          values={`${lineGenerator0(points0)};${lineGenerator0(points1)};${lineGenerator0(points0)}`}
           dur="60s"
           repeatCount="indefinite"
         />

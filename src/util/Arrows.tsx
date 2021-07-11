@@ -17,28 +17,15 @@ type ArrowProps = {
   direction: string;
   x: number|string;
   y: number|string;
+	clickHandler: ()=>{};
   height?: number;
   width?: number;
 };
 
 const Arrow = (props: ArrowProps) => {
-  const { stroke, x, y } = props;
+  const { stroke, x, y, clickHandler } = props;
   return (
-		<svg x={x} y={y} overflow="visible" onClick={(e)=>{console.log(e)}}>
-      <path
-        d={arrowD}
-        stroke={stroke}
-				strokeOpacity="1"
-        fill="whitesmoke"
-        transform={`translate(-31.836 0)`}
-			/>
-				<animate
-					attributeName="fill" 
-					values="'whitesmoke'; 'none'; 'whitesmoke';"
-					// values="0.25;1;0.25"
-          dur="5s"
-          repeatCount="indefinite"
-        />
+
 				<animate
 					attributeName="strokeOpacity" 
 					values="1;0.25;1"
